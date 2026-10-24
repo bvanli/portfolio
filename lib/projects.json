@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Persuasive Visualization: Climate Disasters",
+    "year": 2026,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "DSC 106 group project. A persuasive visualization built on the proposition that climate-related disasters are becoming more frequent."
+  },
+  {
+    "title": "DonkeyCar Autonomous Vehicle",
+    "year": 2026,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "DSC 190 project training a self-driving RC car. Collected driving data on the physical car, moved it from the Raspberry Pi to UCSD's DSMLP GPU cluster, and trained models with TensorFlow."
+  },
+  {
+    "title": "WildGuess",
+    "year": 2026,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Hackathon build: a Wordle-style guessing game about San Diego wildlife, written in plain HTML, CSS, and JavaScript."
+  },
+  {
+    "title": "Prosthetic Arm Project",
+    "year": 2025,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Using machine learning, Python, and GitHub to build a fully functional prosthetic arm with the Triton NeuroTech club at UCSD."
+  },
+  {
+    "title": "Water Polo Stats Project",
+    "year": 2023,
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Collected data throughout the season and compiled a data dashboard in Power BI. Used graphs and visuals to highlight important game stats such as goals per shot. Summarized our season at a glance and helped my coach adjust the lineup for next year."
+  },
+  {
+    "title": "Quidem dolor facere impedit",
+    "year": 2025,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Elit rerum quisquam nobis eligendi dignissimos deserunt animi beatae. Maiores fuga architecto quidem explicabo delectus voluptas dignissimos distinctio accusamus voluptatum. Accusamus blanditiis consequatur explicabo deserunt dolorum amet nesciunt."
+  },
+  {
+    "title": "Excepturi quas delectus ducimus",
+    "year": 2025,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Placeat sunt magnam eligendi animi officia laudantium repellendus tempora. Velit repellendus perspiciatis nobis excepturi placeat officiis atque molestias. Atque assumenda odio placeat animi minus quos officiis."
+  },
+  {
+    "title": "Culpa laudantium impedit ducimus",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Quos explicabo aspernatur amet accusamus minus impedit quisquam quas. Quidem eligendi nihil maiores placeat ipsum officiis quas culpa quibusdam. Maiores vitae officiis atque dolor quisquam maxime sunt."
+  },
+  {
+    "title": "Architecto eius blanditiis fuga",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Officia cumque minus iure eius dicta. Consectetur vitae lorem distinctio officiis beatae facere amet. Excepturi lorem impedit aspernatur voluptas praesentium repellat cumque amet sapiente."
+  },
+  {
+    "title": "Minus amet cumque nobis",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Facere ducimus impedit culpa adipisicing accusamus molestias iure fuga laudantium. Molestias minus odio quos lorem culpa blanditiis provident elit cumque. Repellendus impedit harum similique magnam quibusdam architecto iure."
+  },
+  {
+    "title": "Praesentium rerum impedit consectetur",
+    "year": 2023,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Aspernatur dignissimos repellendus dolorum minus laborum mollitia placeat. Nobis tempora animi cumque sit nesciunt maxime voluptas fuga facere. Assumenda odio provident velit officiis cumque."
+  },
+  {
+    "title": "Maiores dolor magnam assumenda",
+    "year": 2023,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Ipsum adipisicing praesentium architecto eligendi amet assumenda quisquam nesciunt. Sapiente minus accusamus laborum facere omnis vitae maiores optio. Cumque possimus lorem explicabo consequatur odio harum."
+  }
+]
