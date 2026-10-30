@@ -91,7 +91,12 @@ export async function fetchJSON(url) {
 const VALID_HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 const PLACEHOLDER_IMAGE = 'https://dsc106.com/labs/lab02/images/empty.svg';
 
-export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+export function renderProjects(
+  projects,
+  containerElement,
+  headingLevel = 'h2',
+  emptyMessage = 'No projects to display yet.',
+) {
   if (!containerElement) {
     console.error('renderProjects: container element not found');
     return;
@@ -106,7 +111,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
   containerElement.innerHTML = '';
 
   if (!Array.isArray(projects) || projects.length === 0) {
-    containerElement.innerHTML = '<p>No projects to display yet.</p>';
+    containerElement.innerHTML = `<p>${emptyMessage}</p>`;
     return;
   }
 

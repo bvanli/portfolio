@@ -75,9 +75,11 @@ function applyFilters() {
       ? searched
       : searched.filter((p) => String(p.year) === selectedYear);
 
-  renderProjects(visible, projectsContainer, 'h2');
+  // Keep the default message for truly empty data; otherwise the filters hid everything
+  const emptyMessage = projects.length > 0 ? 'No projects match your search.' : undefined;
+  renderProjects(visible, projectsContainer, 'h2', emptyMessage);
   if (projectsTitle) {
-    projectsTitle.textContent = `${visible.length} Projects`;
+    projectsTitle.textContent = `${visible.length} ${visible.length === 1 ? 'Project' : 'Projects'}`;
   }
 
   // The pie reflects the search only, so selecting a year keeps every slice
