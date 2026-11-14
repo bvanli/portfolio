@@ -118,9 +118,19 @@ export function renderProjects(
 
   for (let project of projects) {
     const article = document.createElement('article');
+    const title = project.title ?? 'Untitled project';
+    const titleHTML = project.url
+      ? `<a class="project-link" href="${project.url}" target="_blank" rel="noopener">${title}</a>`
+      : title;
+    // Local image paths (e.g. "images/x.png") resolve from the site root,
+    // so they work on both the home page and /projects/
+    let image = project.image || PLACEHOLDER_IMAGE;
+    if (!/^(https?:)?\/\//.test(image) && !image.startsWith('/')) {
+      image = BASE_PATH + image;
+    }
     article.innerHTML = `
-      <${headingLevel}>${project.title ?? 'Untitled project'}</${headingLevel}>
-      <img src="${project.image || PLACEHOLDER_IMAGE}" alt="${project.title ?? ''}">
+      <${headingLevel}>${titleHTML}</${headingLevel}>
+      <img src="${image}" alt="${project.title ?? ''}">
       <div>
         <p>${project.description ?? ''}</p>
         <p class="project-year">${project.year ?? ''}</p>

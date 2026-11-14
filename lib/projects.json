@@ -1,5 +1,12 @@
 [
   {
+    "title": "Bikewatching",
+    "year": 2026,
+    "image": "images/bikewatch.png",
+    "description": "Interactive Mapbox + D3 map of ~260K Bluebikes trips from March 2024. Circle size shows traffic at each Boston/Cambridge station, color shows whether riders are mostly arriving or departing, and a time slider filters by time of day.",
+    "url": "https://bvanli.github.io/BIKEWATCH/"
+  },
+  {
     "title": "Persuasive Visualization: Climate Disasters",
     "year": 2026,
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
@@ -64,11 +71,5 @@
     "year": 2023,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Aspernatur dignissimos repellendus dolorum minus laborum mollitia placeat. Nobis tempora animi cumque sit nesciunt maxime voluptas fuga facere. Assumenda odio provident velit officiis cumque."
-  },
-  {
-    "title": "Maiores dolor magnam assumenda",
-    "year": 2023,
-    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Ipsum adipisicing praesentium architecto eligendi amet assumenda quisquam nesciunt. Sapiente minus accusamus laborum facere omnis vitae maiores optio. Cumque possimus lorem explicabo consequatur odio harum."
   }
 ]
