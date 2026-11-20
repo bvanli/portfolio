@@ -23,9 +23,13 @@ async function loadData() {
   return data;
 }
 
+// elocuent's placeholder id for uncommitted lines; its GitHub link would 404
+const UNCOMMITTED_ID = '00000000';
+
 function processCommits(data) {
   return d3
     .groups(data, (d) => d.commit)
+    .filter(([commit]) => commit !== UNCOMMITTED_ID)
     .map(([commit, lines]) => {
       let first = lines[0];
       let { author, date, time, timezone, datetime } = first;
