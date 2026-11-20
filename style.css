@@ -250,9 +250,16 @@ dl.stats dd {
 }
 
 circle {
-  transition: 200ms;
+  /* r grows at a constant speed: bigger dots take proportionally longer */
+  transition:
+    all 200ms,
+    r calc(var(--r) * 100ms);
   transform-origin: center;
   transform-box: fill-box;
+
+  @starting-style {
+    r: 0;
+  }
 
   &:hover {
     transform: scale(1.5);
@@ -275,6 +282,119 @@ circle.selected {
   stroke-opacity: 0.7;
   stroke-dasharray: 5 3;
   animation: marching-ants 2s linear infinite;
+}
+
+/* Meta: timeline slider */
+.slider-row label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.slider-row input {
+  flex: 1;
+}
+
+.slider-row time {
+  margin-left: auto;
+}
+
+/* Meta: scrollytelling */
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-story .step {
+  padding-bottom: 80vh;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+  /* Chart shrinks so the selection count + breakdown always fit in 50vh */
+  display: flex;
+  flex-direction: column;
+
+  #chart {
+    flex: 1;
+    min-height: 0;
+    container-type: size;
+  }
+
+  /* Largest 1000×600 box that fits, so the SVG has no letterboxed dead
+     space (a mousedown there would hit the bare <svg> and break d3.brush) */
+  #chart svg {
+    display: block;
+    width: min(100cqw, 100cqh * 1000 / 600);
+    height: auto;
+  }
+
+  #selection-count {
+    margin-block: 0.5em;
+  }
+
+  #language-breakdown {
+    margin: 0;
+  }
+}
+
+/* Meta: files unit visualization */
+#files-legend .legend-item {
+  cursor: default;
+}
+
+#files {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+
+  > div {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  dt {
+    grid-column: 1;
+    overflow-wrap: anywhere;
+  }
+
+  dd {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: start;
+    gap: 0.15em;
+    padding-top: 0.6em;
+    margin-left: 0;
+  }
+
+  small {
+    display: block;
+    font-size: 75%;
+    opacity: 0.6;
+  }
+
+  .loc {
+    display: flex;
+    width: 0.5em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color);
+  }
 }
 
 /* Meta: tooltip */

@@ -14,12 +14,29 @@
         This page includes stats about the code of this website.
     </p>
 
+    <div class="slider-row">
+        <label>
+            Show commits until:
+            <input type="range" id="commit-progress" min="0" max="100" value="100">
+            <time id="commit-progress-time"></time>
+        </label>
+    </div>
+
     <div id="stats"></div>
 
     <h2>Commits by time of day</h2>
-    <div id="chart"></div>
-    <p id="selection-count">No commits selected</p>
-    <dl id="language-breakdown" class="stats"></dl>
+    <div id="scrolly-1">
+        <div id="scatter-story"></div>
+        <div id="scatter-plot">
+            <div id="chart"></div>
+            <p id="selection-count">No commits selected</p>
+            <dl id="language-breakdown" class="stats"></dl>
+        </div>
+    </div>
+
+    <h2>Lines of code by file</h2>
+    <ul id="files-legend" class="legend"></ul>
+    <dl id="files"></dl>
 
     <dl id="commit-tooltip" class="info tooltip" hidden>
         <dt>Commit</dt>
