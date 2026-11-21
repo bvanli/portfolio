@@ -72,9 +72,11 @@ function renderCommitInfo(data, commits) {
   dl.append('dt').text('Files');
   dl.append('dd').text(numFiles);
 
+  // Mean number of lines per file within the (filtered) data passed in.
+  // Using the max line number overcounts when later lines aren't shown yet.
   const fileLengths = d3.rollups(
     data,
-    (v) => d3.max(v, (v) => v.line),
+    (v) => v.length,
     (d) => d.file,
   );
   const averageFileLength = d3.mean(fileLengths, (d) => d[1]);
@@ -230,7 +232,14 @@ function renderDots(dotsGroup, commits) {
 function updateScatterPlot(data, commits) {
   const svg = d3.select('#chart').select('svg');
 
-  xScale.domain(d3.extent(commits, (d) => d.datetime)).nice();
+  let [minTime, maxTime] = d3.extent(commits, (d) => d.datetime);
+  // A single visible commit gives a zero-width domain (garbled ticks);
+  // pad it by a day on each side so the dot sits centered on real dates.
+  if (+minTime === +maxTime) {
+    minTime = d3.timeDay.offset(minTime, -1);
+    maxTime = d3.timeDay.offset(maxTime, 1);
+  }
+  xScale.domain([minTime, maxTime]).nice();
 
   const xAxisGroup = svg.select('g.x-axis');
   xAxisGroup.selectAll('*').remove();
@@ -392,8 +401,9 @@ function onTimeSliderChange() {
   updateForTime(timeScale.invert(commitProgress));
 }
 
-function renderScatterStory(commits) {
-  d3.select('#scatter-story')
+// One .step per commit; shared by both scrollytelling sections
+function renderStory(selector, commits, { firstLabel, showTopFile }) {
+  d3.select(selector)
     .selectAll('.step')
     .data(commits, (d) => d.id)
     .join('div')
@@ -403,12 +413,22 @@ function renderScatterStory(commits) {
         dateStyle: 'full',
         timeStyle: 'short',
       });
-      const label = i === 0 ? 'my first commit' : 'a commit';
-      const numFiles = d3.group(d.lines, (l) => l.file).size;
-      return `On ${when}, I made <a href="${d.url}" target="_blank">${label}</a>.
+      const label = i === 0 ? firstLabel : 'a commit';
+      const linesByFile = d3.rollups(
+        d.lines,
+        (v) => v.length,
+        (l) => l.file,
+      );
+      const numFiles = linesByFile.length;
+      let text = `On ${when}, I made <a href="${d.url}" target="_blank">${label}</a>.
         I edited ${d.totalLines} lines across ${numFiles} ${
           numFiles === 1 ? 'file' : 'files'
         }.`;
+      if (showTopFile && numFiles > 1) {
+        const [topFile, topLines] = d3.greatest(linesByFile, (f) => f[1]);
+        text += ` Most of them (${topLines}) went into <code>${topFile}</code>.`;
+      }
+      return text;
     });
 }
 
@@ -434,7 +454,14 @@ colors = d3
 
 renderScatterPlot(data, commits);
 renderFileLegend();
-renderScatterStory(commits);
+renderStory('#scatter-story', commits, {
+  firstLabel: 'my first commit',
+  showTopFile: false,
+});
+renderStory('#files-story', commits, {
+  firstLabel: 'a commit',
+  showTopFile: true,
+});
 
 document
   .getElementById('commit-progress')
@@ -449,4 +476,15 @@ scroller
   })
   .onStepEnter(onStepEnter);
 
-window.addEventListener('resize', () => scroller.resize());
+const filesScroller = scrollama();
+filesScroller
+  .setup({
+    container: '#scrolly-2',
+    step: '#scrolly-2 .step',
+  })
+  .onStepEnter(onStepEnter);
+
+window.addEventListener('resize', () => {
+  scroller.resize();
+  filesScroller.resize();
+});

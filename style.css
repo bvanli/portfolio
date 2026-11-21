@@ -300,7 +300,8 @@ circle.selected {
 }
 
 /* Meta: scrollytelling */
-#scrolly-1 {
+#scrolly-1,
+#scrolly-2 {
   position: relative;
   display: flex;
   gap: 1rem;
@@ -310,11 +311,13 @@ circle.selected {
   }
 }
 
-#scatter-story {
+#scatter-story,
+#files-story {
   position: relative;
 }
 
-#scatter-story .step {
+#scatter-story .step,
+#files-story .step {
   padding-bottom: 80vh;
 }
 
@@ -348,6 +351,50 @@ circle.selected {
 
   #language-breakdown {
     margin: 0;
+  }
+}
+
+/* Files scrolly: the plot gets 2/3 of the width so the final state
+   (all commits) fits in one viewport-tall sticky box at 1280×800 */
+#scrolly-2 > #files-plot {
+  flex: 2;
+}
+
+#files-plot {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-block: 0.5rem;
+
+  h2 {
+    margin-block: 0 0.5rem;
+  }
+
+  #files-legend {
+    grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));
+    margin: 0 0 0.75rem;
+    padding: 0.4em 0.75em;
+    gap: 0.5em;
+  }
+
+  #files {
+    grid-template-columns: 10.5rem 1fr;
+    row-gap: 0.3rem;
+    margin: 0;
+  }
+
+  #files dt {
+    font-size: 0.75rem;
+  }
+
+  #files dd {
+    gap: 0.1rem;
+    padding-top: 0.3rem;
+  }
+
+  #files .loc {
+    width: 0.4rem;
   }
 }
 
@@ -388,12 +435,29 @@ circle.selected {
     opacity: 0.6;
   }
 
+  > div {
+    transition: opacity 400ms;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  /* New lines pop in instead of snapping */
   .loc {
     display: flex;
     width: 0.5em;
     aspect-ratio: 1;
     border-radius: 50%;
     background: var(--color);
+    transition:
+      scale 400ms,
+      opacity 400ms;
+
+    @starting-style {
+      scale: 0;
+      opacity: 0;
+    }
   }
 }
 
